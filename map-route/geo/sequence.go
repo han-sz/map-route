@@ -24,6 +24,7 @@ func newSequence(id uint32) *sequence {
 		max:       geopoint{-math.MaxFloat32, -math.MaxFloat32},
 		min:       geopoint{math.MaxFloat32, math.MaxFloat32},
 		geopoints: make([]geopoint, 0, 30),
+		// TODO: run a stat / histogram to find avg. num co-ords per sequence to save on mem alloc and copy
 	}
 }
 
