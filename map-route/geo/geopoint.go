@@ -13,7 +13,7 @@ type geopoint struct {
 	lon float32
 }
 
-func toGeopoint(lat, lon string) geopoint {
+func ToGeopoint(lat, lon string) geopoint {
 	latVal, errLat := strconv.ParseFloat(lat, 32)
 	lonVal, errLon := strconv.ParseFloat(lon, 32)
 	if errLat != nil || errLon != nil {

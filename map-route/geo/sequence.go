@@ -5,34 +5,34 @@ import (
 	"math"
 )
 
-type sequence struct {
-	id         uint32
-	size       uint16
-	kilometres float64
+type Sequence struct {
+	id       uint32
+	Size     uint16
+	Distance float64
 
 	max       geopoint
 	min       geopoint
-	geopoints []geopoint
+	Geopoints []geopoint
 }
 
-func newSequence(id uint32) *sequence {
-	return &sequence{
-		id:         id,
-		size:       0,
-		kilometres: 0.0,
+func NewSequence(id uint32) *Sequence {
+	return &Sequence{
+		id:       id,
+		Size:     0,
+		Distance: 0.0,
 
 		max:       geopoint{-math.MaxFloat32, -math.MaxFloat32},
 		min:       geopoint{math.MaxFloat32, math.MaxFloat32},
-		geopoints: make([]geopoint, 0, 30),
+		Geopoints: make([]geopoint, 0, 30),
 		// TODO: run a stat / histogram to find avg. num co-ords per sequence to save on mem alloc and copy
 	}
 }
 
-func (s *sequence) updateLast() {
-	if len(s.geopoints) == 0 {
+func (s *Sequence) UpdateLast() {
+	if len(s.Geopoints) == 0 {
 		return
 	}
-	last := s.geopoints[len(s.geopoints)-1]
+	last := s.Geopoints[len(s.Geopoints)-1]
 	if last.lat < s.min.lat {
 		s.min.lat = last.lat
 	} else if last.lat > s.max.lat {
@@ -45,6 +45,6 @@ func (s *sequence) updateLast() {
 	}
 }
 
-func (s *sequence) String() string {
-	return fmt.Sprintf("sequence[%d]{min: %v, max: %v, size: %d}", s.id, s.min, s.max, s.size)
+func (s *Sequence) String() string {
+	return fmt.Sprintf("sequence[%d]{min: %v, max: %v, distance: %0.0f}", s.id, s.min, s.max, s.Distance)
 }

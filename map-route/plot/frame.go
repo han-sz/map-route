@@ -21,11 +21,11 @@ func NewFrame(width, height int) *Frame {
 }
 
 func (f *Frame) ConvertBufToImage() *image.RGBA {
-	upLeft := image.Point{0, 0}
-	lowRight := image.Point{int(f.Width), int(f.Height)}
+	topLeft := image.Point{0, 0}
+	botRight := image.Point{int(f.Width), int(f.Height)}
 
-	img := image.NewRGBA(image.Rectangle{upLeft, lowRight})
-	black := color.RGBA{0xff, 0xff, 0xff, 0xff}
+	img := image.NewRGBA(image.Rectangle{topLeft, botRight})
+	white := color.RGBA{0xff, 0xff, 0xff, 0xff}
 
 	w := int(f.Width)
 	h := int(f.Height)
@@ -33,7 +33,7 @@ func (f *Frame) ConvertBufToImage() *image.RGBA {
 		for y := 0; y < h; y++ {
 			idx := y*w + x
 			if f.Buf[idx]&0x1 != 0 {
-				img.Set(x, y, black)
+				img.Set(x, y, white)
 			}
 		}
 	}
