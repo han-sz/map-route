@@ -26,7 +26,7 @@ type options struct {
 var opt options = options{}
 
 func init() {
-	flag.StringVar(&opt.inputData, "i", DEFAULT_INPUT_FILE, "the output file path for the generated map plot")
+	flag.StringVar(&opt.inputData, "i", DEFAULT_INPUT_FILE, "the input file path for the route data")
 	flag.StringVar(&opt.outputFile, "o", DEFAULT_OUTPUT_FILE, "the output file path for the generated map plot")
 	flag.IntVar(&opt.width, "w", DEFAULT_FRAME_WIDTH, "the width of the map plot")
 	flag.IntVar(&opt.height, "h", DEFAULT_FRAME_HEIGHT, "the height of the map plot")
